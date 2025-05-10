@@ -28,9 +28,6 @@ constexpr int MAXN = 1e5+5;
 typedef priority_queue<int,vector<int>,greater<int>> pqg; ///Min
 typedef priority_queue<int> pq; ///Max
 
-int new_dir(int i, int j, V<vi>visit){
-
-}
 int dx[4] = {0,0,1,-1};
 int dy[4] = {1,-1,0,0};
 //dir 0 = der , 1 = izq , 2 = abajo , 3 = arriba
@@ -64,26 +61,13 @@ void fill( V<vi> &visit , int n){
 }
 
 ll maxSegment( vi &arr ){
-    int i = 0;
-    int n = SZ(arr);
-    ll maxS = 0;
-    ll sum1 = 0 , sum2 = 0;
-    while( i < n ){
-        while(arr[i] >= 0 && i < n){
-            sum1 += arr[i];
-            i++;
-        } 
-        while(arr[i] <= 0 && i < n){
-            sum2 += arr[i];
-            i++;
-        }
-        maxS = max(maxS , sum1);
-        if(sum1 + sum2 < 0) sum1 = 0;
-        else sum1 += sum2; 
-        sum2 = 0;
+    ll ans = 0 , sum = 0;
+    for(auto x : arr){
+        sum = max(sum , 0LL);
+        sum += x;
+        ans = max(ans , sum);
     }
-    maxS = max(maxS , sum1);
-    return maxS;
+    return ans;
 }
 
 void solve() {
